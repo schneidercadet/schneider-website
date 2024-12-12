@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schneider</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/5b3bfbded5.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "YyOZKzWkJL-8ieFYD",
+        });
+      })(); 
+    </script>
+  </head>
+
+  <body>
+    <section id="landing-page">
+        <div class="blob">
+            <div class="blob inset-0 blob__position">
+                <div class="bg-shape1 bg-teal opacity bg-blur" data-speed="0.1"></div>
+                <div class="bg-shape2 bg-primary opacity bg-blur" data-speed="0.15"></div>
+                <div class="bg-shape1 bg-purple opacity bg-blur" data-speed="0.5"></div>
+            </div>
+        </div>
+      <div class="nav__bar nav__hover">
+        <nav>
+          <figure>
+            <img id="personal-logo" src="./assets/Schneider LOGO.svg" alt="" />
+          </figure>
+          <ul class="nav__link--lists">
+            <li class="nav__link">
+              <a
+                href="#"
+                class="nav__link--anchor link__hover-effect link__hover-effect--black"
+                >About</a
+              >
+            </li>
+            <li class="nav__link">
+              <a
+                href="#projects"
+                class="nav__link--anchor link__hover-effect link__hover-effect--black"
+                >Projects</a
+              >
+            </li>
+            <li class="nav__link" onclick="toggleModal()">
+              <a
+                href="#"
+                class="nav__link--anchor link__hover-effect link__hover-effect--black"
+                >Contact</a
+              >
+            </li>
+            <li class="nav__link click__secondary" onclick="toggleContrast()">
+              <a
+                href="#"
+                class="nav__link--anchor link__hover-effect link__hover-effect--black"
+                ><i class="fa-solid fa-circle-half-stroke"></i
+              ></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <header class="header">
+        <div class="header__container">
+            <div class="title__content">
+                <h1 class="title typing">Hey, <br>I'm Schneider<span class="cursor">|</span></h1>
+            </div>
+            <div class="content__section">
+                <p class="header__para">
+                    I'm a <b class="purple">full-stack developer.</b><br />
+                    I specialize in building web applications and websites that are
+                    user-friendly and responsive. <br />Here's a bit more
+                    <b class="purple click__secondary" onclick="toggleModal()">about me.</b>
+                </p>
+          <div class="social__buttons">
+            <a href="#" class="social__link click"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+            <a
+              href="https://github.com/schneidercadet"
+              target="_blank"
+              class="social__link click"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+            <a
+              href="./assets/ Resume.pdf"
+              target="_blank"
+              class="social__link click"
+              ><i class="fa-solid fa-file-pdf"></i
+            ></a>
+          </div>
+        </div>
+      </header>
+      <button class="mail__button click" onclick="toggleModal()">
+        <i class="fa-solid fa-envelope"></i> 
+      </button>
+      <a href="#projects" class="scroll">
+        <div class="scroll__icon click__secondary"></div>
+      </a>
+      <div class="modal">
+        <div class="modal__half modal__about">
+          <h3 class="modal__title modal__title--about">
+            Here's a bit about me
+          </h3>
+          <h4 class="modal__sub-title modal__sub-title--about">
+            Full Stack Developer
+          </h4>
+          <p class="modal__para">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum
+            consequatur voluptatum soluta. Eius beatae quod similique optio
+            reprehenderit mollitia molestiae architecto quidem? A consequuntur
+            rem dicta doloremque nobis vel sequi?
+          </p>
+          <div class="modal__languages">
+            <figure class="modal__language">
+              <img
+                class="modal__language--img"
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+              />
+              <span class="language__name">HTML</span>
+            </figure>
+            <figure class="modal__language">
+              <img
+                class="modal__language--img"
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+              />
+              <span class="language__name">CSS</span>
+            </figure>
+            <figure class="modal__language">
+              <img
+                class="modal__language--img"
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+              />
+              <span class="language__name">JavaScript</span>
+            </figure>
+            <figure class="modal__language">
+              <img
+                class="modal__language--img"
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
+              />
+              <span class="language__name">Nodejs</span>
+            </figure>
+          </div>
+        </div>
+        <div class="modal__half modal__contact">
+          <h3 class="modal__title modal__title--contact">Let's get in touch</h3>
+          <h4 class="modal__sub-title modal__sub-title--contact">
+            I would love to hear from you
+          </h4>
+          <form id="contact__form" onsubmit="contact(event)">
+            <div class="form__item">
+              <label class="form__label">Name</label>
+              <input type="text" name="user_name" class="input" required />
+            </div>
+            <div class="form__item">
+              <label class="form__label">Email</label>
+              <input type="email" name="user_email" class="input" required />
+            </div>
+            <div class="form__item">
+              <label class="form__label">Message</label>
+              <textarea name="message" class="input" required></textarea>
+            </div>
+            <button id="contact__submit" class="form__button">Send</button>
+          </form>
+          <div class="modal__overlay modal__overlay--loading">
+            <div class="modal__loading"></div>
+          </div>
+          <div class="modal__overlay modal__overlay--success">
+            Thanks for the message, looking forward to connecting with you soon.
+          </div>
+        </div>
+        <i class="fa-solid fa-x modal__exit click__secondary" onclick="toggleModal()"></i>
+      </div>
+    </section>
+    <section id="projects">
+      <div class="container"> 
+        <div class="row">
+          <h1 class="section__title">
+            Here are some of my <span class="purple">projects.</span>
+          </h1>
+          <div class="project__container">
+            <ul class="project__list" aria-hidden="true">
+              <li class="project">
+                <div class="project__wrapper">
+                  <img src="./assets/blinker mockup.png" class="project__img" />
+                  <div class="project__wrapper--bg"></div>
+                  <div class="project__description">
+                    <h3 class="project__description--title">
+                      Car Sales Project
+                    </h3>
+                    <h4 class="project__sub-title">
+                      Html, CSS, JavaScript, Vue, VueX
+                    </h4>
+                    <p class="project__description--para">
+                      This project was built using Vue and VueX. It is a car
+                      sales project that allows users to view cars, add cars to
+                      a cart, and checkout. The project also has a search
+                      feature that allows users to search for cars.
+                    </p>
+                    <div class="project__links">
+                      <a href="" class="project__link">
+                        <i class="fa-brands fa-github click__secondary"></i>
+                      </a>
+                      <a href="" class="project__link click__secondary">
+                        <i class="fas fa-link"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="project">
+                <div class="project__wrapper">
+                  <img src="./assets/web4.jpg" class="project__img" />
+                  <div class="project__wrapper--bg"></div>
+                  <div class="project__description">
+                    <h3 class="project__description--title">
+                      Car Sales Project
+                    </h3>
+                    <h4 class="project__sub-title">
+                      Html, CSS, JavaScript, Vue, VueX
+                    </h4>
+                    <p class="project__description--para">
+                      This project was built using Vue and VueX. It is a car
+                      sales project that allows users to view cars, add cars to
+                      a cart, and checkout. The project also has a search
+                      feature that allows users to search for cars.
+                    </p>
+                    <div class="project__links">
+                      <a href="" class="project__link">
+                        <i class="fa-brands fa-github click__secondary"></i>
+                      </a>
+                      <a href="" class="project__link click__secondary">
+                        <i class="fas fa-link"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="project project--center">
+                <div class="project__wrapper">
+                  <img src="./assets/web1.jpg" class="project__img" />
+                  <div class="project__wrapper--bg"></div>
+                  <div class="project__description">
+                    <h3 class="project__description--title">
+                      Car Sales Project
+                    </h3>
+                    <h4 class="project__sub-title">
+                      Html, CSS, JavaScript, Vue, VueX
+                    </h4>
+                    <p class="project__description--para">
+                      This project was built using Vue and VueX. It is a car
+                      sales project that allows users to view cars, add cars to
+                      a cart, and checkout. The project also has a search
+                      feature that allows users to search for cars.
+                    </p>
+                    <div class="project__links">
+                      <a href="" class="project__link">
+                        <i class="fa-brands fa-github click__secondary"></i>
+                      </a>
+                      <a href="" class="project__link click__secondary">
+                        <i class="fas fa-link"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="project">
+                <div class="project__wrapper">
+                  <img src="./assets/web2.jpg" class="project__img" />
+                  <div class="project__wrapper--bg"></div>
+                  <div class="project__description">
+                    <h3 class="project__description--title">
+                      Car Sales Project
+                    </h3>
+                    <h4 class="project__sub-title">
+                      Html, CSS, JavaScript, Vue, VueX
+                    </h4>
+                    <p class="project__description--para">
+                      This project was built using Vue and VueX. It is a car
+                      sales project that allows users to view cars, add cars to
+                      a cart, and checkout. The project also has a search
+                      feature that allows users to search for cars.
+                    </p>
+                    <div class="project__links">
+                      <a href="" class="project__link">
+                        <i class="fa-brands fa-github click__secondary"></i>
+                      </a>
+                      <a href="" class="project__link click__secondary">
+                        <i class="fas fa-link"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="project">
+                <div class="project__wrapper">
+                  <img src="./assets/web3.jpg" class="project__img" />
+                  <div class="project__wrapper--bg"></div>
+                  <div class="project__description">
+                    <h3 class="project__description--title">
+                      Car Sales Project
+                    </h3>
+                    <h4 class="project__sub-title">
+                      Html, CSS, JavaScript, Vue, VueX
+                    </h4>
+                    <p class="project__description--para">
+                      This project was built using Vue and VueX. It is a car
+                      sales project that allows users to view cars, add cars to
+                      a cart, and checkout. The project also has a search
+                      feature that allows users to search for cars.
+                    </p>
+                    <div class="project__links">
+                      <a href="" class="project__link">
+                        <i class="fa-brands fa-github click__secondary"></i>
+                      </a>
+                      <a href="" class="project__link click__secondary">
+                        <i class="fas fa-link"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer id="footer">
+      <div class="footer__container">
+        <figure>
+          <img id="footer-logo" src="./assets/Schneider LOGO.svg" alt="" />
+        </figure>
+        <div class="footer__links">
+          <a
+            href="#"
+            class="footer__link link__hover--effect link__hover-effect--white"
+            >Github</a
+          >
+          <a
+            href="#"
+            class="footer__link link__hover--effect link__hover-effect--white"
+            >Linkedin</a
+          >
+          <a
+            href="#"
+            class="footer__link link__hover--effect link__hover-effect--white"
+            >Resume</a
+          >
+        </div>
+        <p class="footer__para">&copy; Copyright | 2024 Schneider Cadet</p>
+      </div>
+    </footer>
+    <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  </body>
+</html>
