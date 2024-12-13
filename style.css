@@ -60,11 +60,29 @@ nav,
 }
 
 /* 
+Cross-Browser Optimizations 
+*/
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #8454ff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #242424;
+}
+
+/* 
 Background Styles 
 */
 
 .bg-blur {
   filter: blur(90px);
+  -webkit-filter: blur(90px);
 }
 
 .bg-primary {
@@ -72,7 +90,7 @@ Background Styles
 }
 
 .bg-teal {
-  background: #a4c4ff00;
+  background: #ff5ca300;
 }
 
 .bg-purple {
@@ -88,34 +106,45 @@ Background Styles
   z-index: -2;
   pointer-events: none;
   overflow: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .blob__position {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
   align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   width: 100%;
   height: 100%;
+}
+
+.bg-shape1,
+.bg-shape2 {
+  position: relative;
+  border-radius: 9999px;
+  will-change: transform, left, top;
+  transform-style: preserve-3d;
 }
 
 .bg-shape1 {
   width: 400px;
   height: 400px;
-  border-radius: 9999px;
-  position: relative;
-  animation: one 10s infinite;
-  will-change: transfrom;
-  transition: transform 0.3s ease-out;
+  animation: moveOne 15s infinite alternate ease-in-out;
 }
 
 .bg-shape2 {
   width: 300px;
   height: 500px;
-  border-radius: 9999px;
-  position: relative;
-  animation: two 10s infinite;
-  will-change: transfrom;
-  transition: transform 0.3s ease-out;
+  animation: moveTwo 20s infinite alternate ease-in-out;
 }
 
 .opacity {
@@ -197,7 +226,7 @@ Typography
 }
 
 .purple {
-  color: #5730ba;
+  color: #8454ff;
 }
 
 /* 
@@ -216,7 +245,7 @@ Landing page
   display: inline-block;
   margin-left: 3px;
   animation: blink 1s step-end infinite;
-  color: #5730ba;
+  color: #8454ff;
 }
 
 body {
@@ -241,8 +270,8 @@ body {
 }
 
 .title__container {
-    height: auto; /* Will adjust to title's full size */
-    width: 100%;
+  height: auto; 
+  width: 100%;
 }
 
 .header__para {
@@ -294,14 +323,28 @@ Navigation
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
   width: 90%;
   max-width: 1200px;
   padding: 15px 30px;
   background: rgba(102, 102, 102, 0.1);
   backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-radius: 50px;
   z-index: 50;
-  overflow: hidden;
+  -webkit-transition: opacity 600ms 300ms, visibility 600ms 300ms;
+  transition: opacity 600ms 300ms, visibility 600ms 300ms;
+
+  -webkit-transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
+
+  @supports not (
+    (-webkit-backdrop-filter: blur(24px)) or (backdrop-filter: blur(24px))
+  ) {
+    background: rgba(102, 102, 102, 0.8);
+  }
 }
 
 nav {
@@ -324,7 +367,7 @@ nav {
 }
 
 .nav__link--anchor:hover {
-  color: #5730ba;
+  color: #8454ff;
 }
 
 #personal-logo {
@@ -347,7 +390,7 @@ Social Links
 }
 
 .social__link {
-  border: 3px solid #5730ba;
+  border: 3px solid #8454ff;
   color: #2b2b2c;
   padding: 8px;
   width: 40px;
@@ -363,7 +406,7 @@ Social Links
 
 .social__link:hover {
   transform: scale(1.1);
-  background-color: #5730ba;
+  background-color: #8454ff;
   color: #ffffff;
   border-color: #d5b7ff;
 }
@@ -377,12 +420,12 @@ Social Links
   font-size: 32px;
   border-radius: 50%;
   background-color: transparent;
-  color: #5730ba;
+  color: #8454ff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #5730ba;
+  border: 3px solid #8454ff;
   transition: all 0.3s ease;
 }
 
@@ -436,6 +479,11 @@ Projects
   min-width: 400px;
   height: 300px;
   transition: all 0.3s ease;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .project__img {
@@ -472,7 +520,7 @@ Projects
 .project__description--title {
   font-size: 32px;
   font-weight: 600;
-  color: #5730ba;
+  color: #8454ff;
 }
 
 .project__sub-title {
@@ -555,7 +603,7 @@ Modal styles
 .modal__title {
   font-size: 26px;
   font-weight: 600;
-  color: #5730ba;
+  color: #8454ff;
 }
 
 .modal__sub-title {
@@ -602,8 +650,8 @@ Modal styles
 
 .form__button {
   width: 100%;
-  background-color: #5730ba;
-  border: 2px solid #5730ba;
+  background-color: #8454ff;
+  border: 2px solid #8454ff;
   color: white;
   font-size: 20px;
   font-weight: 700;
@@ -672,7 +720,7 @@ Footer
   bottom: 0;
   left: 0;
   width: 100%;
-  min-height: 200px;
+  min-height: 300px;
   padding: 80px 0;
   background-color: #242424;
   z-index: -1;
@@ -683,7 +731,7 @@ Footer
 
 .footer__container {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -718,19 +766,26 @@ Hover Effects
 
 .mail__button:hover {
   transform: scale(1.1);
-  background-color: #5730ba;
+  background-color: #8454ff;
   color: #ffffff;
   border-color: #d5b7ff;
 }
 
 .project__wrapper:hover {
   .project__img {
+    -webkit-transform: scale(1.07);
     transform: scale(1.07);
   }
 
   .project__wrapper--bg {
     backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     opacity: 1;
+    @supports not (
+      (-webkit-backdrop-filter: blur(24px)) or (backdrop-filter: blur(24px))
+    ) {
+      background: rgba(255, 255, 255, 0.9);
+    }
   }
 
   .project__description {
@@ -768,7 +823,7 @@ Click Effects
 
 .click:hover {
   transform: scale(1.1);
-  background-color: #5730ba;
+  background-color: #8454ff;
   color: #ffffff;
   border: 3px solid #d5b7ff;
   transition: 0.5s;
@@ -794,19 +849,19 @@ Click Effects
 }
 
 .form__button:active {
-  border-color: #5730ba;
-  border: 2px solid #5730ba;
-  color: #5730ba;
+  border-color: #8454ff;
+  border: 2px solid #8454ff;
+  color: #8454ff;
 }
 
 input:hover,
 textarea:hover {
-  border-color: #5730ba;
+  border-color: #8454ff;
 }
 
 input:focus,
 textarea:focus {
-  border-color: #5730ba;
+  border-color: #8454ff;
 }
 
 /* 
@@ -862,7 +917,7 @@ Animations
   }
 }
 
-@keyframes one {
+@keyframes moveOne {
   0% {
     left: 0px;
     top: 0px;
@@ -884,7 +939,8 @@ Animations
     top: 0px;
   }
 }
-@keyframes two {
+
+@keyframes moveTwo {
   0% {
     left: 0px;
     top: 0px;
@@ -935,13 +991,19 @@ Media Queries
     font-size: 20px;
   }
 
-  .section__title{
+  .section__title {
     font-size: 48px;
   }
 
   .nav__bar {
     padding: 12px 16px;
     width: 90%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .project__wrapper {
+    min-width: 300px;
+    height: 250px;
   }
 
   .modal {
@@ -958,13 +1020,19 @@ Media Queries
     width: 100%;
   }
 
-  .form__button{
+  .form__button {
     max-width: 100%;
   }
 
+  @media (hover: none) {
+    .project__wrapper:hover .project__img {
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
 }
 
-/* For mobile phones */
+
 @media screen and (max-width: 480px) {
   .title {
     font-size: 52px;
@@ -1011,7 +1079,7 @@ Media Queries
     height: 45px;
     border-radius: 8px;
     margin-right: 12px;
-    border: 2px solid #5730ba;
+    border: 2px solid #8454ff;
   }
 
   .mail__button {
@@ -1040,10 +1108,15 @@ Media Queries
     display: none;
   }
 
-  
+  @media (hover: none) {
+    .project__wrapper:hover .project__img {
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
 }
 
-/* iPhone SE and smaller phones */
+
 @media screen and (max-width: 375px) {
   .title {
     font-size: 40px;
@@ -1062,14 +1135,14 @@ Media Queries
   }
 }
 
-/* For tall mobile screens */
+
 @media screen and (max-width: 480px) and (min-height: 700px) {
   .header {
     top: 45%;
   }
 }
 
-/* For landscape mode */
+
 @media screen and (max-width: 900px) and (orientation: landscape) {
   .header {
     top: 55%;
@@ -1077,5 +1150,12 @@ Media Queries
 
   .title {
     font-size: 42px;
+  }
+
+  @media (hover: none) {
+    .project__wrapper:hover .project__img {
+      -webkit-transform: none;
+      transform: none;
+    }
   }
 }

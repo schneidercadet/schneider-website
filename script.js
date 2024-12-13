@@ -48,23 +48,16 @@ function contact(event) {
       "YyOZKzWkJL-8ieFYD"
     )
     .then(() => {
-      // Keep loading visible for 3.5 seconds
       setTimeout(() => {
         loading.classList.remove("modal__overlay--visible");
         success.classList.add("modal__overlay--visible");
-
-        // Reset form
         form.reset();
       }, 3500);
     })
     .catch((error) => {
       setTimeout(() => {
         loading.classList.remove("modal__overlay--visible");
-
-        // Cleanup animation
         animation.destroy();
-
-        // Alert user of error
         alert(
           "The email service is temporarily unavailable. Please contact me at: schneidercadet@live.fr."
         );
@@ -74,58 +67,50 @@ function contact(event) {
 }
 
 // Mouse movement animation
-document.addEventListener('DOMContentLoaded', () => {
-    const shapes = document.querySelectorAll('.bg-shape1, .bg-shape2');
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+document.addEventListener("DOMContentLoaded", () => {
+  const shapes = document.querySelectorAll(".bg-shape1, .bg-shape2");
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
 
-    document.addEventListener('mousemove', (e) => {
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
+  document.addEventListener("mousemove", (e) => {
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    const distX = mouseX - centerX;
+    const distY = mouseY - centerY;
+    shapes.forEach((shape) => {
+      const speed = parseFloat(shape.getAttribute("data-speed")) || 0.1;
+      const moveX = distX * speed;
+      const moveY = distY * speed;
 
-        // Calculate distance from center
-        const distX = mouseX - centerX;
-        const distY = mouseY - centerY;
-
-        shapes.forEach((shape) => {
-            const speed = parseFloat(shape.getAttribute('data-speed')) || 0.1;
-            
-            // Calculate movement based on mouse position
-            const moveX = distX * speed;
-            const moveY = distY * speed;
-
-            shape.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
+      shape.style.transform = `translate(${moveX}px, ${moveY}px)`;
     });
+  });
 
-    // Reset position 
-    document.addEventListener('mouseleave', () => {
-        shapes.forEach((shape) => {
-            shape.style.transform = 'translate(0, 0)';
-        });
+  // Reset position
+  document.addEventListener("mouseleave", () => {
+    shapes.forEach((shape) => {
+      shape.style.transform = "translate(0, 0)";
     });
+  });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const text = "Hey,\nI'm Schneider.";
-    const typingElement = document.querySelector('.typing');
-    typingElement.innerHTML = `<span></span><span class="cursor">|</span>`;
-    const textElement = typingElement.querySelector('span');
-    let index = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  const text = "Hey,\nI'm Schneider.";
+  const typingElement = document.querySelector(".typing");
+  typingElement.innerHTML = `<span></span><span class="cursor">|</span>`;
+  const textElement = typingElement.querySelector("span");
+  let index = 0;
 
-    function type() {
-        if (index < text.length) {
-            if (text.charAt(index) === '\n') {
-                textElement.innerHTML += '<br>';
-            } else {
-                textElement.innerHTML += text.charAt(index);
-            }
-            index++;
-            setTimeout(type, 100); // Adjust typing speed here
-        }
+  function type() {
+    if (index < text.length) {
+      if (text.charAt(index) === "\n") {
+        textElement.innerHTML += "<br>";
+      } else {
+        textElement.innerHTML += text.charAt(index);
+      }
+      index++;
+      setTimeout(type, 100);
     }
-
-    // Start typing
-    setTimeout(type, 1000); // Delay before starting
+  }
+  setTimeout(type, 1000);
 });
-
